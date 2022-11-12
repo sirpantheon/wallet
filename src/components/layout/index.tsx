@@ -1,9 +1,14 @@
-import { Container } from './styles'
+import Aside from '../aside'
+import Content from '../content'
+import MainHeader from '../mainHeader'
+import { Grid } from './styles'
 
 export default function Layout() {
     return (
-        <Container>
-            <h1>Layout</h1>
-        </Container>
+        <Grid>
+            <MainHeader />
+            <Aside />
+            <Content />
+        </Grid>
     )
 }

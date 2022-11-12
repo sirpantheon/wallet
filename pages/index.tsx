@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Dashboard from '../src/dashboard'
+import Layout from '../src/components/layout'
 import GlobalStyle from '../src/styles/GlobalStyle'
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
         <meta charSet='utf-8'/>
         
       </Head>
-      <Dashboard />
+      <Layout />
       <GlobalStyle />
 
       
