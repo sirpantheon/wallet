@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import Layout from '../src/components/layout'
 import GlobalStyle from '../src/styles/GlobalStyle'
+import { ThemeProvider } from 'styled-components'
+import Dark from '../src/styles/themes/dark'
 
 export default function Home() {
   return (
-    <div>
+    <ThemeProvider theme={Dark}>
       <Head>
         <title>My Wallet</title>
         <meta name="description" content="My Wallet" />
@@ -16,6 +18,6 @@ export default function Home() {
       <GlobalStyle />
 
       
-    </div>
+    </ThemeProvider>
   )
 }
