@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { MdDashboard , MdArrowDownward, MdExitToApp, MdArrowUpward } from 'react-icons/md'
 
 export const Container = styled.div`
     grid-area: AS;
@@ -29,10 +30,20 @@ export const MenuContainer = styled.nav`
 `
 export const MenuLink = styled.a`
     color: ${props => props.theme.colors.white};
-    transition: opacity 0.8s, margin-left 0.8s ;
+    transition: opacity 0.8s, margin-left 0.3s, color 0.3s, background-color 00.3s ;
+    display: flex;
+    align-items:center;
+    padding: 10px;
+    border-radius: 50px 0 0 50px;
 
     &:hover {
         opacity: .8;
-        margin-left:10px;
-  }
+        margin-left:15px;
+        color: ${props => props.theme.colors.info};
+        background-color: ${props => props.theme.colors.primary};
+    }
+    > svg{
+        font-size:25px;
+        margin-right:10px;
+    }
 `
