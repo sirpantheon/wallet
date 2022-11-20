@@ -17,19 +17,19 @@ export default function Aside() {
             </Header>
 
             <MenuContainer>
-                <Link href={"/"}>
+                <Link href={"/dashboard"}>
                     <MenuLink>
                         <MdDashboard />
                         Dashboard
                     </MenuLink>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/list"}>
                     <MenuLink>
                         <MdArrowUpward />
                         Entradas
                     </MenuLink>
                 </Link>
-                <Link href={"/"}>
+                <Link href={"/list"}>
                     <MenuLink>
                         <MdArrowDownward />
                         Saidas

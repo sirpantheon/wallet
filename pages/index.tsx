@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from '../src/components/layout'
-import GlobalStyle from '../src/styles/GlobalStyle'
 import { ThemeProvider } from 'styled-components'
 import Dark from '../src/styles/themes/dark'
 
@@ -15,7 +14,7 @@ export default function Home() {
         
       </Head>
       <Layout />
-      <GlobalStyle />
+      
 
 
     </ThemeProvider>
