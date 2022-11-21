@@ -1,6 +1,6 @@
 import { Container } from './styles'
 
-export default function Content({children}) {
+export default function Content({ children }) {
     return (
         <Container>
             {children}
