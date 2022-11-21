@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import Layout from '../src/components/layout'
 import { ThemeProvider } from 'styled-components'
-import Dark from '../src/styles/themes/dark'
+import Dark from '../src/styles/theme/dark'
+import DashboardPage from './dashboard'
 
 export default function Home() {
   return (
@@ -13,7 +14,9 @@ export default function Home() {
         <meta charSet='utf-8' />
         
       </Head>
-      <Layout />
+      <Layout>
+        <DashboardPage/>
+      </Layout>
       
 
 
