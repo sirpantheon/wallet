@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    height: 100vh;
-    width: 20vw;
+    grid-area: AS;
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.secondary};
     padding-left: 20px;

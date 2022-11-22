@@ -1,6 +1,6 @@
 import styles from 'styled-components'
-
 export const Container = styles.div`
-    display: flex;
+    grid-area: CT;
+    color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.primary};
 `;
