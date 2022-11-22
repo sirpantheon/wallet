@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import { MdDashboard , MdArrowDownward, MdExitToApp, MdArrowUpward } from 'react-icons/md'
 
 export const Container = styled.div`
-    grid-area: AS;
+    height: 100vh;
+    width: 20vw;
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.secondary};
     padding-left: 20px;
@@ -12,7 +12,7 @@ export const Container = styled.div`
 export const Header = styled.header`
     display: flex;
     align-items: center;
-    height: 70px;
+    height: 75px;
 `
 export const Title = styled.h2`
     color: ${props => props.theme.colors.white};

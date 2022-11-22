@@ -1,7 +1,9 @@
+import { Container } from "./styles";
+
 export default function Dashboard(){
     return (
-        <div>
+        <Container>
             <h1>DashBoard</h1>
-        </div>
+        </Container>
     )
 }

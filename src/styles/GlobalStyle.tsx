@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
 
   html, body, #root{
     height: 100%;
+    display: flex;
   }
 
   *, button, input{

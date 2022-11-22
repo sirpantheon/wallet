@@ -8,11 +8,7 @@ export default function Aside() {
     return (
         <Container>
             <Header>
-                <div>
-
-                    <Image src={Logotipo} alt="Logo My Wallet" />
-                </div>
-
+                <Image src={Logotipo} alt="Logo My Wallet" />
                 <Title>My Wallet</Title>
             </Header>
 
