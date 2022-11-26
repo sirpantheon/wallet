@@ -1,22 +1,20 @@
-import styles from 'styled-components'
-
-export const Container = styles.div`
-    display: flex;
-    width: 80vw;
-    height: 3.75vw;
+import styled from 'styled-components'
+export const Container = styled.div`
+    grid-area: MH;
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.secondary};
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
-    border-bottom: 1px solid ${props => props.theme.colors.white};
+    border-bottom: 1px solid ${props => props.theme.colors.white}
 `;
-export const Welcome = styles.h3`
+export const Welcome = styled.h3`
 `;
-export const Profile = styles.div`
-    border-bottom: 1px solid ${props => props.theme.colors.white};
+export const Profile = styled.div`
+    border-bottom: 1px solid ${props => props.theme.colors.white}
 `;
-export const UserName = styles.span`
+export const UserName = styled.span`
 
 `;
 

@@ -1,9 +1,9 @@
-import styles from 'styled-components'
+import styled from 'styled-components'
 
-export const Container = styles.div`
+export const Container = styled.div`
     display: grid;
-    grid-template-columns: 250px auto;
-    grid-template-rows: 70px auto;
+    grid-template-columns: 20vw 80vw;
+    grid-template-rows: 8vh 92vh;
 
     grid-template-areas:
     'AS MH'
