@@ -1,6 +1,8 @@
-import Dashboard from '../src/dashboard/index';
+import Dashboard from "../src/screen/dashboard";
 
-export default function DashboardPage(){
-    
-    return <Dashboard />
+export default function DashboardPage() {
+
+    return (
+        <Dashboard />
+    )
 }

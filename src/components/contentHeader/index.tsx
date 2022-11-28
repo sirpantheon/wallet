@@ -1,9 +1,9 @@
 import { Container } from './styles'
 
-export default function ContentHeader({ children }) {
+export default function ContentHeader() {
     return (
         <Container>
-            {children}
+            <h1>ContentHeader</h1>
         </Container>
     )
 }

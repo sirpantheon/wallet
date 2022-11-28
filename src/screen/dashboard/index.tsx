@@ -1,9 +1,11 @@
+import ContentHeader from "../../components/contentHeader";
 import { Container } from "./styles";
-
 export default function Dashboard(){
     return (
         <Container>
-            <h1>DashBoard</h1>
+            <ContentHeader />
         </Container>
+            
+        
     )
 }
