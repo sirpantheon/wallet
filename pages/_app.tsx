@@ -9,9 +9,9 @@ import DashboardPage from './dashboard'
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={dark} >
-      <Head>
+      {/* <Head>
         <meta name="viewport" content="viewport-fit=cover" />
-      </Head>
+      </Head> */}
       <Layout>
         <DashboardPage/>
       </Layout>
