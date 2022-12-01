@@ -23,6 +23,42 @@ export default function List() {
                     subtitle="30/11/2022"
                     amount="R$ 158,00"
                 />
+                <FinanceCard 
+                    cardColor="#443197"
+                    tagColor="#ec0303"
+                    title="Conta de Luz"
+                    subtitle="30/11/2022"
+                    amount="R$ 158,00"
+                />
+                <FinanceCard 
+                    cardColor="#443197"
+                    tagColor="#ec0303"
+                    title="Conta de Luz"
+                    subtitle="30/11/2022"
+                    amount="R$ 158,00"
+                />
+                <FinanceCard 
+                    cardColor="#443197"
+                    tagColor="#ec0303"
+                    title="Conta de Luz"
+                    subtitle="30/11/2022"
+                    amount="R$ 158,00"
+                />
+                <FinanceCard 
+                    cardColor="#443197"
+                    tagColor="#ec0303"
+                    title="Conta de Luz"
+                    subtitle="30/11/2022"
+                    amount="R$ 158,00"
+                />
+                <FinanceCard 
+                    cardColor="#443197"
+                    tagColor="#ec0303"
+                    title="Conta de Luz"
+                    subtitle="30/11/2022"
+                    amount="R$ 158,00"
+                />
+
             </Content>
         </Container>
     )
