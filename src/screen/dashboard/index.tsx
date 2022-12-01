@@ -10,7 +10,7 @@ export default function Dashboard() {
     ]
     return (
         <Container>
-            <ContentHeader title="DashBoard" lineColor="#654">
+            <ContentHeader title="Dashboard" lineColor="#ec0303">
                 <SelectInput options={options} />
             </ContentHeader>
         </Container>

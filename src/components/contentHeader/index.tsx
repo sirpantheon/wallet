@@ -13,8 +13,8 @@ export default function ContentHeader(props: IContentHeaderprops) {
 
     return (
         <Container>
-            <Title>
-                {props.title}
+            <Title lineColor={props.lineColor}>
+                <h1>{props.title}</h1>
             </Title>
             <Controllers>
                 {props.children}

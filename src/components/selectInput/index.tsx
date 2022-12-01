@@ -14,7 +14,7 @@ export default function SelectInput(props: ISelectInputProps) {
       <select>
         {
           props.options.map(option => (
-            <option value={option.value}>{option.label}</option>
+            <option value={option.value} key={option[0]}>{option.label}</option>
           ))
         }
       </select>

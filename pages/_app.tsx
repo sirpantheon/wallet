@@ -5,6 +5,7 @@ import { dark, light } from '../src/styles/theme/themes'
 import Head from 'next/head'
 import Layout from '../src/components/layout'
 import DashboardPage from './dashboard'
+import ListPage from './list'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -13,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="viewport-fit=cover" />
       </Head> */}
       <Layout>
-        <DashboardPage/>
+        <ListPage />
       </Layout>
 
       <GlobalStyle />
