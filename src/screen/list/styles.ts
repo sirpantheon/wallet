@@ -5,3 +5,6 @@ export const Container = styled.div`
     color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.primary};
 `;
+export const Content = styled.div`
+
+`;

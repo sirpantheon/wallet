@@ -1,6 +1,7 @@
 import ContentHeader from "../../components/contentHeader";
+import FinanceCard from "../../components/financeCard";
 import SelectInput from "../../components/selectInput";
-import { Container } from "./styles";
+import { Container, Content } from "./styles";
 
 export default function List() {
     const options = [
@@ -13,6 +14,16 @@ export default function List() {
             <ContentHeader title="Entradas" lineColor="#ec0303">
                 <SelectInput options={options} />
             </ContentHeader>
+
+            <Content>
+                <FinanceCard 
+                    cardColor="#443197"
+                    tagColor="#ec0303"
+                    title="Conta de Luz"
+                    subtitle="30/11/2022"
+                    amount="R$ 158,00"
+                />
+            </Content>
         </Container>
     )
 }
