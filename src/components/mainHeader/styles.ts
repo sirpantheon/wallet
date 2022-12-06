@@ -7,12 +7,12 @@ export const Container = styled.div`
     justify-content: space-between;
     align-items: center;
     padding: 0 10px;
-    border-bottom: 1px solid ${props => props.theme.colors.white}
+    border-bottom: 1px solid ${props => props.theme.colors.white};
 `;
 export const Welcome = styled.h3`
 `;
 export const Profile = styled.div`
-    border-bottom: 1px solid ${props => props.theme.colors.white}
+    border-bottom: 1px solid ${props => props.theme.colors.white};
 `;
 export const UserName = styled.span`
 
