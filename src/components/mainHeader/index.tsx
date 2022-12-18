@@ -1,11 +1,10 @@
-import Toggle from '../toggle'
-import { Container, Profile, Welcome, UserName } from './styles'
+import Toggle from '../Toggle';
+import { Container, Profile, UserName, Welcome } from './styles';
 
-export default function MainHeader() {
+export default function MainHeader(){
     return (
         <Container>
             <Toggle/>
-
             <Profile>
                 <Welcome>Óla </Welcome>
                 <UserName>
