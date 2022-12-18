@@ -2,10 +2,10 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     grid-area: CT;
-    color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.primary};
-    padding: 25px;
-    height: calc(100vh - 8vh);
+    color: ${props => props.theme.colors.white};
+    padding: 2rem;
+    height: calc(100vh - 10vh);
     overflow-y: scroll;
     ::-webkit-scrollbar{
         width: 10px;
@@ -19,3 +19,4 @@ export const Container = styled.div`
         border-radius: 3px;
     }
 `;
+
