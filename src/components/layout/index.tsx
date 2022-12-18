@@ -1,17 +1,16 @@
-import Aside from '../aside'
-import MainHeader from '../mainHeader'
-import Content from '../content'
-import { Container } from './styles'
+import Aside from '../Aside';
+import Content from '../Content';
+import MainHeader from '../MainHeader';
+import { Grid } from './styles';
 
-export default function Layout({ children }) {
-  return (
-    <Container>
-      <Aside />
-      <MainHeader />
-      <Content>
-        {children}
-      </Content>
-    </Container>
-
-  )
+export default function Layout({children}){
+    return (
+        <Grid>
+            <MainHeader/>
+            <Aside/> 
+            <Content>
+                {children}
+            </Content>
+        </Grid>
+    )
 }
