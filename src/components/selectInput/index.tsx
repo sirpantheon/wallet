@@ -8,15 +8,15 @@ interface ISelectInputProps {
 
 }
 
-export default function SelectInput(props: ISelectInputProps) {
-  const key = [0,1,2,3,4,5,6,7,8,9,10]
+export const SelectInput: React.FC<ISelectInputProps> = ({ options }) => {
+
 
   return (
     <Container>
       <select>
         {
-          props.options.map((option, index ) => (
-            <option value={option.value} key={index}>{option.label}</option>
+          options.map((option) => (
+            <option value={option.value} key={option.value} >{option.label}</option>
           ))
         }
       </select>
