@@ -1,42 +1,26 @@
-import Image from 'next/image'
-import { Container, Header, MenuContainer, Title, MenuLink } from './styles'
-import Logotipo from "../../assets/logo.svg"
-import Link from 'next/link'
+import { Container, Header, MenuContainer, MenuLink, Title } from './styles';
 import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward } from 'react-icons/md'
 
 export default function Aside() {
     return (
         <Container>
             <Header>
-                <Image src={Logotipo} alt="Logo My Wallet" />
-                <Title>My Wallet</Title>
+                <Title>The Wallet</Title>
             </Header>
 
             <MenuContainer>
-                <Link href={"/dashboard"}>
-                    <MenuLink>
-                        <MdDashboard />
-                        Dashboard
-                    </MenuLink>
-                </Link>
-                <Link href={"/list"}>
-                    <MenuLink>
-                        <MdArrowUpward />
-                        Entradas
-                    </MenuLink>
-                </Link>
-                <Link href={"/list"}>
-                    <MenuLink>
-                        <MdArrowDownward />
-                        Saidas
-                    </MenuLink>
-                </Link>
-                <Link href={"/"}>
-                    <MenuLink>
-                        <MdExitToApp />
-                        Sair
-                    </MenuLink>
-                </Link>
+                <MenuLink href='/dashboard'>
+                    <MdDashboard />Dashboard
+                </MenuLink>
+                <MenuLink href='/list/entry-balance'>
+                    <MdArrowUpward />Entradas
+                </MenuLink>
+                <MenuLink href='/list/exit-balance'>
+                    <MdArrowDownward />Saidas
+                </MenuLink>
+                <MenuLink href='#'>
+                    <MdExitToApp />Exit
+                </MenuLink>
             </MenuContainer>
         </Container>
     )

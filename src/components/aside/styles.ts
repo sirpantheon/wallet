@@ -2,8 +2,8 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
     grid-area: AS;
-    color: ${props => props.theme.colors.white};
     background-color: ${props => props.theme.colors.secondary};
+    color: ${props => props.theme.colors.white};
     padding-left: 20px;
     border-right: 1px solid ${props => props.theme.colors.white};
 `;
@@ -14,7 +14,7 @@ export const Header = styled.header`
     height: 75px;
 `
 export const Title = styled.h2`
-    color: ${props => props.theme.colors.white};
+    color: ${props => props.theme.colors.warning};
     margin-left: 20px;
 `
 export const MenuContainer = styled.nav`
@@ -25,7 +25,7 @@ export const MenuContainer = styled.nav`
         text-decoration: none;
         margin: 10px 0;
     };
-    
+
 `
 export const MenuLink = styled.a`
     color: ${props => props.theme.colors.white};
