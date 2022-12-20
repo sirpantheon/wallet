@@ -15,7 +15,7 @@ export default function Dashboard() {
     return (
         <Container>
             <ContentHeader title="DashBoard" lineColor="#E44C4E">
-                <SelectInput options={options}/>
+                <SelectInput options={options} onChange={(e)=> {}} />
             </ContentHeader>
         </Container>
     )
