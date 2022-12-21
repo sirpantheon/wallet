@@ -8,6 +8,8 @@ import gains from "../../Repositories/gains";
 import expenses from "../../Repositories/expenses";
 import formatCurrency from "../../Components/utils/FormatCurrency";
 import formatDate from "../../Components/utils/FormatDate";
+import { v4 as uuidv4 } from 'uuid';
+import ListOfMonths from "../../Components/utils/months";
 
 interface IData {
     id: string;
@@ -30,6 +32,32 @@ export default function List() {
             { title: 'Saídas', lineColor: '#E44C4E', list: expenses }
     }, [type]);
 
+    const years = useMemo(() => {
+        let uniqueYears: number[] = [];
+
+        props.list.forEach(item => {
+            const date = new Date(item.date)
+            const year = date.getFullYear()
+
+            if (!uniqueYears.includes(year)) {
+                uniqueYears.push(year)
+            }
+        })
+
+        return uniqueYears.map(year => {
+            return { value: year, label: year, }
+        })
+    }, [props.list]);
+
+    const months = useMemo(() => {
+        return ListOfMonths.map((month, index)=>{
+            return{
+                value:index + 1,
+                label:month, 
+            }
+        })
+    }, []);
+
     useEffect(() => {
 
         const filteredData = props.list.filter(item => {
@@ -43,7 +71,7 @@ export default function List() {
 
         const formatedDate = filteredData.map(item => {
             return {
-                id: String(new Date().getTime()) + item.amount,
+                id: uuidv4(),
                 description: item.description,
                 amountFormatted: formatCurrency(Number(item.amount)),
                 frequency: item.frequency,
@@ -52,76 +80,48 @@ export default function List() {
             }
         })
 
-    setData(formatedDate)
-}, [data.length, monthSelected, yearSelected, props.list ])
+        setData(formatedDate)
+    }, [data.length, monthSelected, yearSelected, props.list])
 
+    return (
+        <Container>
+            <ContentHeader title={props.title} lineColor={props.lineColor}>
+                <SelectInput
+                    options={months}
+                    onChange={(e) => setMonthSelected(e.target.value)}
+                    defaultValue={monthSelected}
+                />
+                <SelectInput
+                    options={years}
+                    onChange={(e) => setYearSelected(e.target.value)}
+                    defaultValue={yearSelected}
+                />
+            </ContentHeader>
 
-const months = [
-    { value: 1, label: "janeiro" },
-    { value: 2, label: "fevereiro" },
-    { value: 3, label: "março" },
-    { value: 4, label: "abril" },
-    { value: 5, label: "maio" },
-    { value: 6, label: "junho" },
-    { value: 7, label: "julho" },
-    { value: 8, label: "agosto" },
-    { value: 9, label: "setembro" },
-    { value: 10, label: "outubro" },
-    { value: 11, label: "novembro" },
-    { value: 12, label: "dezembro" }
-]
+            <Filters>
+                <button type="button" className="tag-filter tag-filter-recurrents">
+                    Recorrentes
+                </button>
+                <button type="button" className="tag-filter tag-filter-eventuals">
+                    Eventuais
+                </button>
+            </Filters>
 
-const years = [
-    { value: 2019, label: 2019 },
-    { value: 2020, label: 2020 },
-    { value: 2021, label: 2021 },
-    { value: 2022, label: 2022 },
-    { value: 2023, label: 2023 },
-    { value: 2024, label: 2024 },
-    { value: 2025, label: 2025 },
-    { value: 2026, label: 2026 }
+            <Content>
+                {
+                    data.map(item => (
+                        <FinanceCard
+                            key={item.id}
+                            tagColor={item.tagColor}
+                            title={item.description}
+                            subtitle={item.dateFormatted}
+                            amount={item.amountFormatted}
+                        />
+                    ))
+                }
+            </Content>
+        </Container>
 
-]
-
-return (
-    <Container>
-        <ContentHeader title={props.title} lineColor={props.lineColor}>
-            <SelectInput
-                options={months}
-                onChange={(e) => setMonthSelected(e.target.value)}
-                defaultValue={monthSelected}
-            />
-            <SelectInput
-                options={years}
-                onChange={(e) => setYearSelected(e.target.value)}
-                defaultValue={yearSelected}
-            />
-        </ContentHeader>
-
-        <Filters>
-            <button type="button" className="tag-filter tag-filter-recurrents">
-                Recorrentes
-            </button>
-            <button type="button" className="tag-filter tag-filter-eventuals">
-                Eventuais
-            </button>
-        </Filters>
-
-        <Content>
-            {
-                data.map(item => (
-                    <FinanceCard
-                        key={item.id}
-                        tagColor={item.tagColor}
-                        title={item.description}
-                        subtitle={item.dateFormatted}
-                        amount={item.amountFormatted}
-                    />
-                ))
-            }
-        </Content>
-    </Container>
-
-)
+    )
 }
 
