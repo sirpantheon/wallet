@@ -3,7 +3,7 @@ import { ContentHeader } from "../../Components/contentHeader";
 import FinanceCard from "../../Components/financeCard";
 import { Container, Content, Filters } from "./styles";
 import { useMemo, useState, useEffect } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
 import gains from "../../Repositories/gains";
 import expenses from "../../Repositories/expenses";
 import formatCurrency from "../../Components/utils/FormatCurrency";
@@ -24,6 +24,7 @@ export default function List() {
     const [data, setData] = useState<IData[]>([]);
     const [monthSelected, setMonthSelected] = useState<string>(String(new Date().getMonth() + 1));
     const [yearSelected, setYearSelected] = useState<string>(String(new Date().getFullYear()));
+    const [selectedFrequency, setSelectedFrequency] = useState(['recorrente', 'eventual']);
     const { type } = useParams();
 
     const props = useMemo(() => {
@@ -50,13 +51,23 @@ export default function List() {
     }, [props.list]);
 
     const months = useMemo(() => {
-        return ListOfMonths.map((month, index)=>{
-            return{
-                value:index + 1,
-                label:month, 
+        return ListOfMonths.map((month, index) => {
+            return {
+                value: index + 1,
+                label: month,
             }
         })
     }, []);
+
+    function handleFrenquencyClick(frequency: string) {
+        const alreadySelected = selectedFrequency.findIndex(item => item === frequency);
+        if (alreadySelected >= 0) {
+            const filtered = selectedFrequency.filter(f => f != frequency)
+            setSelectedFrequency(filtered)
+        } else {
+            setSelectedFrequency((prev) => [...prev, frequency])
+        }
+    }
 
     useEffect(() => {
 
@@ -66,7 +77,7 @@ export default function List() {
             const month = String(date.getMonth() + 1);
             const year = String(date.getFullYear());
 
-            return month === monthSelected && year === yearSelected;
+            return month === monthSelected && year === yearSelected && selectedFrequency.includes(item.frequency);
         });
 
         const formatedDate = filteredData.map(item => {
@@ -76,12 +87,12 @@ export default function List() {
                 amountFormatted: formatCurrency(Number(item.amount)),
                 frequency: item.frequency,
                 dateFormatted: formatDate(item.date),
-                tagColor: item.frequency === 'recorrente' ? '#E44C4E' : '#4E41F0'
+                tagColor: item.frequency === 'recorrente' ?'#4E41F0': '#E44C4E' 
             }
         })
 
         setData(formatedDate)
-    }, [data.length, monthSelected, yearSelected, props.list])
+    }, [data.length, monthSelected, yearSelected, props.list, selectedFrequency])
 
     return (
         <Container>
@@ -99,10 +110,20 @@ export default function List() {
             </ContentHeader>
 
             <Filters>
-                <button type="button" className="tag-filter tag-filter-recurrents">
+                <button
+                    type="button"
+                    className={`tag-filter tag-filter-recurrents ${selectedFrequency.includes('recorrente') && 'tag-actived'
+                        }`}
+                    onClick={() => handleFrenquencyClick('recorrente')}
+                >
                     Recorrentes
                 </button>
-                <button type="button" className="tag-filter tag-filter-eventuals">
+                <button
+                    type="button"
+                    className={`tag-filter tag-filter-eventuals ${selectedFrequency.includes('eventual') && 'tag-actived'
+                        }`}
+                    onClick={() => handleFrenquencyClick('eventual')}
+                >
                     Eventuais
                 </button>
             </Filters>

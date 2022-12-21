@@ -19,6 +19,7 @@ export const Filters = styled.div`
         color: ${props => props.theme.colors.white};
         margin:0 3rem;
         transition: opacity 0.3s;
+        opacity: .3;
         &:hover{
             opacity: .6;
         }
@@ -29,7 +30,7 @@ export const Filters = styled.div`
             display: block;
             width: 50%;
             margin:0 auto;
-            border: 3px solid ${props => props.theme.colors.warning}
+            border: 3px solid ${props => props.theme.colors.success}
 
         }
 
@@ -38,8 +39,11 @@ export const Filters = styled.div`
             display: block;
             width: 50%;
             margin:0 auto;
-            border: 3px solid ${props => props.theme.colors.success}
+            border: 3px solid ${props => props.theme.colors.warning}
 
+        }
+        .tag-actived{
+            opacity: 1;
         }
     
 `;
