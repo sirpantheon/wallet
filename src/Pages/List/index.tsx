@@ -62,7 +62,7 @@ export default function List() {
     function handleFrenquencyClick(frequency: string) {
         const alreadySelected = selectedFrequency.findIndex(item => item === frequency);
         if (alreadySelected >= 0) {
-            const filtered = selectedFrequency.filter(f => f != frequency)
+            const filtered = selectedFrequency.filter(f => f !== frequency)
             setSelectedFrequency(filtered)
         } else {
             setSelectedFrequency((prev) => [...prev, frequency])
@@ -87,7 +87,7 @@ export default function List() {
                 amountFormatted: formatCurrency(Number(item.amount)),
                 frequency: item.frequency,
                 dateFormatted: formatDate(item.date),
-                tagColor: item.frequency === 'recorrente' ?'#4E41F0': '#E44C4E' 
+                tagColor: item.frequency === 'recorrente' ? '#4E41F0' : '#E44C4E'
             }
         })
 
