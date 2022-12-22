@@ -12,10 +12,14 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     height: 75px;
+    color: ${props => props.theme.colors.info};
+    > svg {
+        font-size:3rem;
+    }
 `
 export const Title = styled.h2`
-    color: ${props => props.theme.colors.warning};
-    margin-left: 20px;
+    color: ${props => props.theme.colors.info};
+    margin-left: 3px;
 `
 export const MenuContainer = styled.nav`
     display: flex;
@@ -39,7 +43,7 @@ export const MenuLink = styled.a`
         opacity: .8;
         margin-left:15px;
         color: ${props => props.theme.colors.info};
-        background-color: ${props => props.theme.colors.primary};
+        background-color: ${props => props.theme.colors.white};
     }
     > svg{
         font-size:25px;

@@ -1,10 +1,12 @@
 import { Container, Header, MenuContainer, MenuLink, Title } from './styles';
-import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward } from 'react-icons/md'
+import { MdDashboard, MdArrowDownward, MdExitToApp, MdArrowUpward } from 'react-icons/md';
+import { GiWallet } from 'react-icons/gi';
 
 export default function Aside() {
     return (
         <Container>
-            <Header>
+            <Header>  
+                <GiWallet />
                 <Title>The Wallet</Title>
             </Header>
 
