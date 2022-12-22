@@ -14,7 +14,7 @@ export const ToggleLabel = styled.span`
 export const ToggleSelector = styled(Switch).attrs<ReactSwitchProps>(
     ({theme})=>({
         onColor:theme.colors.info,
-        offColor:theme.colors.warning
+        offColor:theme.colors.primary
     })
 )<ReactSwitchProps>`
     margin: 0 8px;
