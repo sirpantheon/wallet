@@ -3,16 +3,16 @@ import { DefaultTheme } from 'styled-components';
 export const dark: DefaultTheme = {
 
     colors: {
-        primary: '#1B1F38',
-        secondary: '#252A48',
-        tertiary: '#313862',
+        primary: '#093647',
+        secondary: '#0A4157',
+        tertiary: '#0D526E',
 
         white: '#FFF',
         black: '#000',
         gray: '#bebebe',
 
         success: '#4E41F0',
-        info: '#F7931B',
+        info: '#00D48D',
         warning: '#E44C4E',
     },
 }
@@ -24,12 +24,12 @@ export const light: DefaultTheme = {
         secondary: '#FFF',
         tertiary: '#F5F5F5',
 
-        white: '#000',
+        white: '#006C9E',
         black: '#FFF',
         gray: '#bebebe',
 
-        success: '#03BB85',
-        info: '#3B5998',
+        success: '#D6FBFF',
+        info: '#19B6FF',
         warning: '#E44C4E',
     },
 }
