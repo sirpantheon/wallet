@@ -6,41 +6,32 @@ import { Container, Content } from "./styles";
 import gains from "../../Repositories/gains";
 import expenses from "../../Repositories/expenses";
 import ListOfMonths from "../../Components/utils/months";
-import { useParams } from "react-router-dom";
 import WalletBox from "../../Components/WalletBox";
-
+import WalletMensageBox from "../../Components/WalletMensageBos";
 
 export default function Dashboard() {
 
     const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
     const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
-    const { type } = useParams();
 
-
-    function handleMonthSelected(month:string){
-        try{
+    function handleMonthSelected(month: string) {
+        try {
             const parseMonth = Number(month)
             setMonthSelected(parseMonth)
-        }catch(error){
+        } catch {
             throw new Error('Més Invalido')
         }
     }
 
-    function handleYearSelected(year:string){
-        try{
+    function handleYearSelected(year: string) {
+        try {
             const parseYear = Number(year)
             setYearSelected(parseYear)
-        }catch(error){
+        } catch {
             throw new Error('Ano Invalido')
-            
+
         }
     }
-
-    const props = useMemo(() => {
-        return type === 'entry-balance' ?
-            { title: 'Entradas', lineColor: '#4E41F0', list: gains } :
-            { title: 'Saídas', lineColor: '#E44C4E', list: expenses }
-    }, [type]);
 
     const years = useMemo(() => {
         let uniqueYears: number[] = [];
@@ -68,11 +59,81 @@ export default function Dashboard() {
         })
     }, []);
 
+    const totalExpenses = useMemo(() => {
+        let total: number = 0;
+
+        expenses.forEach(item => {
+            const date = new Date(item.date);
+            const year = date.getFullYear();
+            const month = date.getMonth();
+
+            if (month === monthSelected && year === yearSelected) {
+                try {
+                    total += Number(item.amount);
+                } catch {
+                    throw new Error("Number Invalid!");
+
+                }
+            }
+        })
+        return total;
+    }, [monthSelected, yearSelected]);
+
+    const totalGains = useMemo(() => {
+        let total: number = 0;
+
+        gains.forEach(item => {
+            const date = new Date(item.date);
+            const year = date.getFullYear();
+            const month = date.getMonth();
+
+            if (month === monthSelected && year === yearSelected) {
+                try {
+                    total += Number(item.amount);
+                } catch {
+                    throw new Error("Number Invalid!");
+
+                }
+            }
+        })
+        return total;
+    }, [monthSelected, yearSelected]);
+
+    const totalBalance = useMemo(() => {
+        return totalGains - totalExpenses;
+
+    }, [totalGains, totalExpenses])
+
+    const message = useMemo(() => {
+        if (totalBalance > 0) {
+            return {
+                color: "#00D48D",
+                title: "Muito Bem!!",
+                description: "Sua Carteira Esta Positiva!!!",
+                footerText: "Continue Assim... Considere Fazer Mais Investimentos."
+            }
+        } else if (totalBalance === 0) {
+            return {
+                color: "#4E41F0",
+                title: "Por Pouco!",
+                description: "As Contas Ficaram Apertadas Esse mês",
+                footerText: "Seja Mais Calteloso Com o Seus Gastos."
+            }
+        } else {
+            return {
+                color: "#E44C4E",
+                title: "Cuidado!!!",
+                description: "Fechou No Vermelho esse mês... ",
+                footerText: "Seja Mais Calteloso Com o Seus Gastos."
+            }
+        }
+    }, [totalBalance])
+
 
     return (
         <Container>
             <ContentHeader title="DashBoard" lineColor="#00D48D">
-            <SelectInput
+                <SelectInput
                     options={months}
                     onChange={(e) => handleMonthSelected(e.target.value)}
                     defaultValue={monthSelected}
@@ -85,26 +146,32 @@ export default function Dashboard() {
             </ContentHeader>
 
             <Content>
-                <WalletBox 
+                <WalletBox
                     title="Saldo"
                     color="#00D48D"
                     footerLabel="Atualizado conforme as entradas e saidas"
-                    amount={150.00}
+                    amount={totalBalance}
                     icon='BsCashCoin'
                 />
-                <WalletBox 
+                <WalletBox
                     title="Entradas"
                     color="#4E41F0"
                     footerLabel="Atualizado conforme as entradas e saidas"
-                    amount={5000.00}
+                    amount={totalGains}
                     icon='BsGraphUp'
                 />
-                <WalletBox 
+                <WalletBox
                     title="Saidas"
                     color="#E44C4E"
                     footerLabel="Atualizado conforme as entradas e saidas"
-                    amount={150.00}
+                    amount={totalExpenses}
                     icon='BsGraphDown'
+                />
+                <WalletMensageBox
+                    color={message.color}
+                    title={message.title}
+                    description={message.description}
+                    footerText={message.footerText}
                 />
             </Content>
         </Container>

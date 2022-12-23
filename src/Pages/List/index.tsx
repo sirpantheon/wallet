@@ -69,22 +69,22 @@ export default function List() {
         }
     }
 
-    function handleMonthSelected(month:string){
-        try{
+    function handleMonthSelected(month: string) {
+        try {
             const parseMonth = Number(month)
             setMonthSelected(parseMonth)
-        }catch(error){
+        } catch {
             throw new Error('Més Invalido')
         }
     }
 
-    function handleYearSelected(year:string){
-        try{
+    function handleYearSelected(year: string) {
+        try {
             const parseYear = Number(year)
             setYearSelected(parseYear)
-        }catch(error){
+        } catch {
             throw new Error('Ano Invalido')
-            
+
         }
     }
 
