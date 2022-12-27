@@ -8,6 +8,7 @@ import expenses from "../../Repositories/expenses";
 import ListOfMonths from "../../Components/utils/months";
 import WalletBox from "../../Components/WalletBox";
 import WalletMensageBox from "../../Components/WalletMensageBos";
+import PieChartBox from "../../Components/PieCharts";
 
 export default function Dashboard() {
 
@@ -104,6 +105,30 @@ export default function Dashboard() {
 
     }, [totalGains, totalExpenses])
 
+    const BalanceExpencesXGains = useMemo(() => {
+        const total = totalGains - totalExpenses;
+        const GainsPercent = (total / totalGains) * 100;
+        const ExpencesPercent = (total / totalExpenses) * 100;
+
+        const data = [
+            {
+                name: 'Entradas',
+                value: totalGains,
+                percent: Number(GainsPercent.toFixed(0)),
+                color: "#4E41F0"
+            },
+            {
+                name: 'Saidas',
+                value: totalExpenses,
+                percent: Number(ExpencesPercent.toFixed(0)),
+                color: "#E44C4E"
+            }
+        ]
+
+        return data
+
+    }, [totalGains, totalExpenses])
+
     const message = useMemo(() => {
         if (totalBalance > 0) {
             return {
@@ -173,6 +198,7 @@ export default function Dashboard() {
                     description={message.description}
                     footerText={message.footerText}
                 />
+                <PieChartBox data={BalanceExpencesXGains} />
             </Content>
         </Container>
     )
