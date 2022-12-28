@@ -1,12 +1,13 @@
 import { Container } from './styles';
-import { BsGraphDown, BsGraphUp, BsCashCoin } from 'react-icons/bs';
+import { BsArrowUpRight, BsArrowDownRight } from 'react-icons/bs';
+import { HiOutlineCurrencyDollar } from 'react-icons/hi';
 import CountUp from 'react-countup';
 
 interface IWalletBoxProps {
     title: string;
     amount: number;
     footerLabel: string;
-    icon: 'BsCashCoin' | 'BsGraphUp' | 'BsGraphDown';
+    icon: 'HiOutlineCurrencyDollar' | 'BsArrowUpRight' | 'BsArrowDownRight';
     color: string;
 }
 
@@ -14,12 +15,12 @@ export default function WalletBox(props: IWalletBoxProps) {
 
     function SelectIcon() {
         switch (props.icon) {
-            case 'BsCashCoin':
-                return <BsCashCoin />;
-            case 'BsGraphUp':
-                return <BsGraphUp />;
-            case "BsGraphDown":
-                return <BsGraphDown />;
+            case 'HiOutlineCurrencyDollar':
+                return <HiOutlineCurrencyDollar />;
+            case 'BsArrowUpRight':
+                return <BsArrowUpRight />;
+            case "BsArrowDownRight":
+                return <BsArrowDownRight />;
             default:
                 return null;
         }
