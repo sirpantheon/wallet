@@ -9,6 +9,7 @@ import ListOfMonths from "../../Components/utils/months";
 import WalletBox from "../../Components/WalletBox";
 import WalletMensageBox from "../../Components/WalletMensageBos";
 import PieChartBox from "../../Components/PieCharts";
+import HistoryBox from "../../Components/HistoryBox";
 
 export default function Dashboard() {
 
@@ -105,6 +106,49 @@ export default function Dashboard() {
 
     }, [totalGains, totalExpenses])
 
+    const historyData = useMemo(() => {
+        return ListOfMonths.map((_, month) => {
+            let amountEntry = 0
+            gains.forEach(item => {
+                const date = new Date(item.date);
+                const gainMonth = date.getMonth();
+                const gainYear = date.getFullYear();
+
+                if (gainMonth === month && gainYear === yearSelected) {
+                    try {
+                        amountEntry += Number(item.amount)
+                    } catch {
+                        throw new Error('Amount entry is Invalid')
+                    }
+                }
+            }
+            )
+            let amountOutput = 0
+            expenses.forEach(item => {
+                const date = new Date(item.date);
+                const expenseMonth = date.getMonth();
+                const expenseYear = date.getFullYear();
+
+                if (expenseMonth === month && expenseYear === yearSelected) {
+                    try {
+                        amountOutput += Number(item.amount)
+                    } catch {
+                        throw new Error('Amount entry is Invalid')
+                    }
+                }
+            }
+            )
+
+            return {
+                monthNumber: month,
+                month: ListOfMonths[month].substr(0,3),
+                amountEntry,
+                amountOutput
+            }
+        })
+
+    }, [yearSelected])
+
     const BalanceExpencesXGains = useMemo(() => {
         const total = totalGains - totalExpenses;
         const GainsPercent = (total / totalGains) * 100;
@@ -176,21 +220,21 @@ export default function Dashboard() {
                     color="#00D48D"
                     footerLabel="Atualizado conforme as entradas e saidas"
                     amount={totalBalance}
-                    icon='BsCashCoin'
+                    icon='HiOutlineCurrencyDollar'
                 />
                 <WalletBox
                     title="Entradas"
                     color="#4E41F0"
                     footerLabel="Atualizado conforme as entradas e saidas"
                     amount={totalGains}
-                    icon='BsGraphUp'
+                    icon='BsArrowUpRight'
                 />
                 <WalletBox
                     title="Saidas"
                     color="#E44C4E"
                     footerLabel="Atualizado conforme as entradas e saidas"
                     amount={totalExpenses}
-                    icon='BsGraphDown'
+                    icon='BsArrowDownRight'
                 />
                 <WalletMensageBox
                     color={message.color}
@@ -199,6 +243,7 @@ export default function Dashboard() {
                     footerText={message.footerText}
                 />
                 <PieChartBox data={BalanceExpencesXGains} />
+                <HistoryBox data={historyData} lineColorAmountEntry='#4E41F0' lineColorAmountOutput="#E44C4E"/>
             </Content>
         </Container>
     )
