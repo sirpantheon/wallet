@@ -42,7 +42,7 @@ export const Legend = styled.li<ILegendProps>`
     }
 `;
 export const SideRight = styled.main`
+    width: 50%;
     display:flex;
-    flex:1;
     justify-content: center;
 `;

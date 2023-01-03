@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-interface IContainerProps{
+interface IContainerProps {
     color: string;
 }
 

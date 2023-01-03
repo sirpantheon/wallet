@@ -1,5 +1,6 @@
-import { Container } from "./styles";
+import { Container, Header, Legend, LegendContainer } from "./styles";
 import { ResponsiveContainer, LineChart, Line, XAxis, CartesianGrid, Tooltip } from 'recharts';
+import formatCurrency from '../utils/FormatCurrency';
 
 interface IHistoryBoxProps {
     data: {
@@ -14,12 +15,25 @@ interface IHistoryBoxProps {
 export default function HistoryBox(props: IHistoryBoxProps) {
     return (
         <Container>
-            <h2>Historico de Saldo</h2>
+            
+            <Header>
+                <h2>Historico de Saldo</h2>
+                <LegendContainer>
+                    <Legend color={props.lineColorAmountEntry}>
+                        <div></div>
+                        <span>Entradas</span>
+                    </Legend>
+                    <Legend color={props.lineColorAmountOutput}>
+                        <div></div>
+                        <span>Saidas</span>
+                    </Legend>
+                </LegendContainer>
+            </Header>
             <ResponsiveContainer>
-                <LineChart data={props.data}>
+                <LineChart data={props.data} margin={{ top: 5, right: 20, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray='3 3' stroke="#c5c5c5" />
                     <XAxis dataKey='month' stroke="#e5e5e5" />
-                    <Tooltip />
+                    <Tooltip formatter={(value) => formatCurrency(Number(value))} />
                     <Line
                         type="monotone"
                         dataKey="amountOutput"

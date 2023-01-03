@@ -141,18 +141,23 @@ export default function Dashboard() {
 
             return {
                 monthNumber: month,
-                month: ListOfMonths[month].substr(0,3),
+                month: ListOfMonths[month].substr(0, 3),
                 amountEntry,
                 amountOutput
             }
+        }).filter(item => {
+
+            const currentMonth = new Date().getMonth();
+            const currentYear = new Date().getFullYear();
+            return (yearSelected === currentYear && item.monthNumber <= currentMonth) || (yearSelected < currentYear)
         })
 
     }, [yearSelected])
 
     const BalanceExpencesXGains = useMemo(() => {
-        const total = totalGains - totalExpenses;
-        const GainsPercent = (total / totalGains) * 100;
-        const ExpencesPercent = (total / totalExpenses) * 100;
+        const total = totalGains + totalExpenses;
+        const GainsPercent = (totalGains / total) * 100;
+        const ExpencesPercent = (totalExpenses / total) * 100;
 
         const data = [
             {
@@ -243,7 +248,7 @@ export default function Dashboard() {
                     footerText={message.footerText}
                 />
                 <PieChartBox data={BalanceExpencesXGains} />
-                <HistoryBox data={historyData} lineColorAmountEntry='#4E41F0' lineColorAmountOutput="#E44C4E"/>
+                <HistoryBox data={historyData} lineColorAmountEntry='#4E41F0' lineColorAmountOutput="#E44C4E" />
             </Content>
         </Container>
     )
