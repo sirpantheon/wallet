@@ -1,4 +1,6 @@
-import { Container, Form, FormTitle, Logo } from "./styles";
+import Button from "../../Components/Button";
+import Input from "../../Components/Input";
+import { Container, Form, FormTitle, Logo, Inputs } from "./styles";
 import { GiWallet } from 'react-icons/gi';
 
 export default function SignIn() {
@@ -9,13 +11,27 @@ export default function SignIn() {
 				<h1>The Wallet</h1>
 			</Logo>
 
-			<Form>
-				<FormTitle>Sign In</FormTitle>
+			<Form onSubmit={()=>{}}>
+				<section>
+					<FormTitle>Sign In</FormTitle>
+					<Inputs>
+						<Input 
+							type="email"
+							placeholder="E-mail"
+							required
+						 />
+						<Input 
+							type="password"
+							placeholder="Senha"
+							required
+						 />
+					</Inputs>
+				</section>
 
-				<input type="text" placeholder="Usuario"/>
-				<input type="text" placeholder="Senha"/>
 
-				<button type="submit" >Entrar</button>
+				<Button type="submit">
+					Enviar
+				</Button>
 			</Form>
 		</Container>
 	)
