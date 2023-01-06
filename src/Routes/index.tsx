@@ -1,5 +1,7 @@
-import AppRoutes from "./App.routes";
+// import AppRoutes from "./App.routes";
+
+import AuthRoutes from "./Auth.routes";
 
 export default function Routes() {
-    return (<AppRoutes />)
+    return (<AuthRoutes />)
 }
