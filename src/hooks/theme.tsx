@@ -26,7 +26,7 @@ interface ITheme {
 
 const ThemeContext = createContext<IThemeContext>({} as IThemeContext);
 
-export function ThemeProvider( {children} ) {
+export function ThemeProviderToggle( {children} ) {
   const [theme, setTheme] = useState<ITheme>(dark);
   const toggleTheme = () => {
     if (theme.title === 'dark') {
