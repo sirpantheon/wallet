@@ -27,19 +27,21 @@ export const Logo = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 25px 0;
-  height: 35vh;
+  padding: 30px 20px;;
+  height: 45vh;
   width: 30%;
   border-radius: 15px;
   color: ${props => props.theme.colors.white};
   background-color: ${props => props.theme.colors.tertiary};
-
   -webkit-box-shadow: 9px 7px 20px -1px rgba(0,0,0,0.54);
   -moz-box-shadow: 9px 7px 20px -1px rgba(0,0,0,0.54);
   box-shadow: 9px 7px 20px -1px rgba(0,0,0,0.54);
 `;
 export const FormTitle = styled.h2`
   border-bottom: 1px solid ${props => props.theme.colors.info};
+`;
+export const Inputs = styled.h2`
+  margin-top:10px ;
 `;
