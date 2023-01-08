@@ -1,5 +1,5 @@
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import { SelectInput } from "../../Components/SelectInput";
 import { ContentHeader } from "../../Components/contentHeader";
 import { Container, Content } from "./styles";
@@ -17,16 +17,16 @@ export default function Dashboard() {
     const [monthSelected, setMonthSelected] = useState<number>(new Date().getMonth() + 1);
     const [yearSelected, setYearSelected] = useState<number>(new Date().getFullYear());
 
-    function handleMonthSelected(month: string) {
+    const handleMonthSelected = useCallback((month: string) => {
         try {
             const parseMonth = Number(month)
             setMonthSelected(parseMonth)
         } catch {
             throw new Error('Més Invalido')
         }
-    }
+    },[])
 
-    function handleYearSelected(year: string) {
+    const handleYearSelected = useCallback((year: string)=> {
         try {
             const parseYear = Number(year)
             setYearSelected(parseYear)
@@ -34,7 +34,7 @@ export default function Dashboard() {
             throw new Error('Ano Invalido')
 
         }
-    }
+    },[])
 
     const years = useMemo(() => {
         let uniqueYears: number[] = [];
