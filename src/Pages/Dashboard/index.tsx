@@ -10,7 +10,6 @@ import WalletBox from "../../Components/WalletBox";
 import WalletMensageBox from "../../Components/WalletMensageBos";
 import PieChartBox from "../../Components/PieCharts";
 import HistoryBox from "../../Components/HistoryBox";
-import BarChartBox from "../../Components/BarChartBox";
 
 export default function Dashboard() {
 
@@ -157,20 +156,20 @@ export default function Dashboard() {
 
     const BalanceExpencesXGains = useMemo(() => {
         const total = totalGains + totalExpenses;
-        const GainsPercent = Number(((totalGains / total) * 100).toFixed(0));
-        const ExpencesPercent = Number(((totalGains / total) * 100).toFixed(0));
+        const GainsPercent = (totalGains / total) * 100;
+        const ExpencesPercent = (totalExpenses / total) * 100;
 
         const data = [
             {
                 name: 'Entradas',
                 value: totalGains,
-                percent: GainsPercent ? GainsPercent : 0,
+                percent: Number(GainsPercent.toFixed(0)),
                 color: "#4E41F0"
             },
             {
                 name: 'Saidas',
                 value: totalExpenses,
-                percent: ExpencesPercent ? ExpencesPercent : 0,
+                percent: Number(ExpencesPercent.toFixed(0)),
                 color: "#E44C4E"
             }
         ]
@@ -187,13 +186,6 @@ export default function Dashboard() {
                 description: "Sua Carteira Esta Positiva!!!",
                 footerText: "Continue Assim... Considere Fazer Mais Investimentos."
             }
-        } else if (totalGains === 0 && totalExpenses === 0) {
-            return {
-                color: "#bebebe",
-                title: "Não ha registros...",
-                description: "As Contas Ficaram Apertadas Esse mês",
-                footerText: "Seja Mais Calteloso Com o Seus Gastos."
-            }
         } else if (totalBalance === 0) {
             return {
                 color: "#4E41F0",
@@ -209,85 +201,7 @@ export default function Dashboard() {
                 footerText: "Seja Mais Calteloso Com o Seus Gastos."
             }
         }
-    }, [totalBalance, totalGains, totalExpenses])
-
-    const ExpencesRecurrentVesusEventual = useMemo(() => {
-        let amountRecurrent = 0;
-        let amountEventual = 0;
-
-        expenses.filter((expense) => {
-            const date = new Date(expense.date);
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-
-            return month === monthSelected && year === yearSelected;
-        }).forEach((expense) => {
-            if (expense.frequency === 'recorrente') {
-                return amountRecurrent += Number(expense.amount);
-            }
-            if (expense.frequency === 'eventual') {
-                return amountEventual += Number(expense.amount);
-            }
-        })
-
-        const total = amountEventual + amountRecurrent;
-        const percentRecurrent = Number(((amountRecurrent / total) * 100).toFixed(0))
-        const percentEventual = Number(((amountEventual / total) * 100).toFixed(0))
-
-        return [
-            {
-                name: 'Recorrentes',
-                amount: amountRecurrent,
-                percent: percentRecurrent ? percentRecurrent : 0,
-                color: "#4E41F0"
-            },
-            {
-                name: 'Eventuais',
-                amount: amountEventual,
-                percent: percentEventual ? percentEventual : 0,
-                color: "#E44C4E"
-            },
-        ]
-    }, [monthSelected, yearSelected])
-
-    const GainsRecurrentVesusEventual = useMemo(() => {
-        let amountRecurrent = 0;
-        let amountEventual = 0;
-
-        gains.filter((gain) => {
-            const date = new Date(gain.date);
-            const year = date.getFullYear();
-            const month = date.getMonth() + 1;
-
-            return month === monthSelected && year === yearSelected;
-        }).forEach((gain) => {
-            if (gain.frequency === 'recorrente') {
-                return amountRecurrent += Number(gain.amount);
-            }
-            if (gain.frequency === 'eventual') {
-                return amountEventual += Number(gain.amount);
-            }
-        })
-
-        const total = amountEventual + amountRecurrent;
-        const percentRecurrent = Number(((amountRecurrent / total) * 100).toFixed(0))
-        const percentEventual = Number(((amountEventual / total) * 100).toFixed(0))
-
-        return [
-            {
-                name: 'Recorrentes',
-                amount: amountRecurrent,
-                percent: percentRecurrent ? percentRecurrent : 0,
-                color: "#4E41F0"
-            },
-            {
-                name: 'Eventuais',
-                amount: amountEventual,
-                percent: percentEventual ? percentEventual : 0,
-                color: "#E44C4E"
-            },
-        ]
-    }, [monthSelected, yearSelected])
+    }, [totalBalance])
 
 
     return (
@@ -335,8 +249,6 @@ export default function Dashboard() {
                 />
                 <PieChartBox data={BalanceExpencesXGains} />
                 <HistoryBox data={historyData} lineColorAmountEntry='#4E41F0' lineColorAmountOutput="#E44C4E" />
-                <BarChartBox data={ExpencesRecurrentVesusEventual} title="Saidas" />
-                <BarChartBox data={GainsRecurrentVesusEventual} title="Entradas" />
             </Content>
         </Container>
     )
